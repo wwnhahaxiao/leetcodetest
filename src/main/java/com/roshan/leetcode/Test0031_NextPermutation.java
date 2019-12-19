@@ -11,36 +11,30 @@ import java.util.*;
 //        1,1,5 → 1,5,1
 public class Test0031_NextPermutation {
     private static void mySolution(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-        for (int i : nums) {
-            list.add(i);
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
         }
-        Collections.sort(list);
-        int index = nums.length - 1;
-        int changeIndex = -1;
-        while (index > 0 && changeIndex == -1) {
-            ListIterator<Integer> iterator = list.listIterator();
-            while (iterator.hasNext()) {
-                Integer next = iterator.next();
-                if (next > nums[index]) {
-                    nums[index] = next;
-                    changeIndex = index;
-                    iterator.remove();
+        if (i >= 0) {
+            for (int j = nums.length - 1; j > i ; j--) {
+                if (nums[i] < nums[j]) {
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
                     break;
                 }
             }
-            index--;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (i == changeIndex) {
-                continue;
-            }
-
+        for (int j = 0; j < (nums.length - 1 - i) / 2; j++) {
+            int temp = nums[j + i + 1];
+            nums[j + i + 1] = nums[nums.length - 1- j];
+            nums[nums.length - 1- j] = temp;
         }
     }
 
+
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
+        int[] nums = {2, 3, 1};
         mySolution(nums);
         for (int num : nums) {
             System.out.println(num);
