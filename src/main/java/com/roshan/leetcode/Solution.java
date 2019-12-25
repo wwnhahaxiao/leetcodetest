@@ -1,51 +1,126 @@
 package com.roshan.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
-
 public class Solution {
+    // box size
+    static int n = 3;
+    // row size
+    static int N = n * n;
 
-    private List<List<Integer>> res = new ArrayList<>();
-    private int[] candidates;
-    private int len;
+    static int[][] rows = new int[N][N + 1];
+    static int[][] columns = new int[N][N + 1];
+    static int[][] boxes = new int[N][N + 1];
 
-    private void findCombinationSum(int residue, int start, Stack<Integer> pre) {
-        if (residue == 0) {
-            // Java 中可变对象是引用传递，因此需要将当前 path 里的值拷贝出来
-            res.add(new ArrayList<>(pre));
-            return;
-        }
-        // 优化添加的代码2：在循环的时候做判断，尽量避免系统栈的深度
-        // residue - candidates[i] 表示下一轮的剩余，如果下一轮的剩余都小于 0 ，就没有必要进行后面的循环了
-        // 这一点基于原始数组是排序数组的前提，因为如果计算后面的剩余，只会越来越小
-        for (int i = start; i < len && residue - candidates[i] >= 0; i++) {
-            pre.add(candidates[i]);
-            // 【关键】因为元素可以重复使用，这里递归传递下去的是 i 而不是 i + 1
-            findCombinationSum(residue - candidates[i], i, pre);
-            pre.pop();
+    static char[][] board;
+
+    static boolean sudokuSolved = false;
+
+    //Check if one could place a number d in (row, col) cell
+    public static boolean couldPlace(int d, int row, int col) {
+        int idx = (row / n) * n + col / n;
+        return rows[row][d] + columns[col][d] + boxes[idx][d] == 0;
+    }
+
+    //Place a number d in (row, col) cell
+    public static void placeNumber(int d, int row, int col) {
+        int idx = (row / n) * n + col / n;
+        rows[row][d]++;
+        columns[col][d]++;
+        boxes[idx][d]++;
+        //int + '0' = (char)int
+        board[row][col] = (char) (d + '0');
+    }
+
+    //Remove a number which didn't lead to a solution
+    public static void removeNumber(int d, int row, int col) {
+        int idx = (row / n) * n + col / n;
+        rows[row][d]--;
+        columns[col][d]--;
+        boxes[idx][d]--;
+        board[row][col] = '.';
+    }
+
+    /*
+    Call backtrack function in recursion
+    to continue to place numbers
+    till the moment we have a solution
+    */
+    public static void placeNextNumbers(int row, int col) {
+        if ((col == N - 1) && (row == N - 1)) {// if we're in the last cell that means we have the solution
+            sudokuSolved = true;
+        } else {// if not yet
+            // if we're in the end of the row
+            if (col == N - 1) {
+                // go to the next row
+                backtrack(row + 1, 0);
+            } else {
+                // go to the next column
+                backtrack(row, col + 1);
+            }
         }
     }
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        int len = candidates.length;
-        if (len == 0) {
-            return res;
+    //Backtracking
+    public static void backtrack(int row, int col) {
+        // if the cell is empty
+        if (board[row][col] == '.') {
+            // iterate over all numbers from 1 to 9
+            for (int d = 1; d < 10; d++) {
+                if (couldPlace(d, row, col)) {
+                    placeNumber(d, row, col);
+                    placeNextNumbers(row, col);
+                    // if sudoku is solved, there is no need to backtrack
+                    // since the single unique solution is promised
+                    if (!sudokuSolved) {
+                        removeNumber(d, row, col);
+                    }
+                }
+            }
+        } else {
+            placeNextNumbers(row, col);
         }
-        // 优化添加的代码1：先对数组排序，可以提前终止判断
-        Arrays.sort(candidates);
-        this.len = len;
-        this.candidates = candidates;
-        findCombinationSum(target, 0, new Stack<>());
-        return res;
+    }
+
+    public static void solveSudoku(char[][] board) {
+        Solution.board = board;
+        // init rows, columns and boxes
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                char num = board[i][j];
+                if (num != '.') {
+                    int d = Character.getNumericValue(num);
+                    placeNumber(d, i, j);
+                }
+            }
+        }
+        backtrack(0, 0);
     }
 
     public static void main(String[] args) {
-        int[] candidates = {2, 3, 6, 7};
-        int target = 7;
-        Solution solution = new Solution();
-        List<List<Integer>> combinationSum = solution.combinationSum(candidates, target);
-        System.out.println(combinationSum);
+        char[][] board = new char[][]{
+                {'.','.','9',  '7','4','8',  '.','.','.'},
+                {'7','.','.',  '.','.','.',  '.','.','.'},
+                {'.','2','.',  '1','.','9',  '.','.','.'},
+
+                {'.','.','7',  '.','.','.',  '2','4','.'},
+                {'.','6','4',  '.','1','.',  '5','9','.'},
+                {'.','9','8',  '.','.','.',  '3','.','.'},
+
+                {'.','.','.',  '8','.','3',  '.','2','.'},
+                {'.','.','.',  '.','.','.',  '.','.','6'},
+                {'.','.','.',  '2','7','5',  '9','.','.'}
+        };
+        solveSudoku(board);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board[i][j] + " ");
+                if (j % 3 == 2) {
+                    System.out.print("  ");
+                }
+            }
+            if (i % 3 == 2) {
+                System.out.println();
+            }
+            System.out.println();
+        }
     }
 }
