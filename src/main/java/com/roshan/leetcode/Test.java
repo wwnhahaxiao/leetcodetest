@@ -8,71 +8,61 @@ public class Test {
     // row size
     static int N = n * n;
 
-    static int [][] rows = new int[N][N + 1];
-    static int [][] columns = new int[N][N + 1];
-    static int [][] boxes = new int[N][N + 1];
+    static int[][] rows = new int[N][N + 1];
+    static int[][] columns = new int[N][N + 1];
+    static int[][] boxes = new int[N][N + 1];
 
     static char[][] board;
 
     static boolean sudokuSolved = false;
 
+    //Check if one could place a number d in (row, col) cell
     public static boolean couldPlace(int d, int row, int col) {
-    /*
-    Check if one could place a number d in (row, col) cell
-    */
-        int idx = (row / n ) * n + col / n;
+        int idx = (row / n) * n + col / n;
         return rows[row][d] + columns[col][d] + boxes[idx][d] == 0;
     }
 
+    //Place a number d in (row, col) cell
     public static void placeNumber(int d, int row, int col) {
-    /*
-    Place a number d in (row, col) cell
-    */
-        int idx = (row / n ) * n + col / n;
-
+        int idx = (row / n) * n + col / n;
         rows[row][d]++;
         columns[col][d]++;
         boxes[idx][d]++;
         //int + '0' = (char)int
-        board[row][col] = (char)(d + '0');
+        board[row][col] = (char) (d + '0');
     }
 
+    //Remove a number which didn't lead to a solution
     public static void removeNumber(int d, int row, int col) {
-    /*
-    Remove a number which didn't lead to a solution
-    */
-        int idx = (row / n ) * n + col / n;
+        int idx = (row / n) * n + col / n;
         rows[row][d]--;
         columns[col][d]--;
         boxes[idx][d]--;
         board[row][col] = '.';
     }
 
-    public static void placeNextNumbers(int row, int col) {
     /*
     Call backtrack function in recursion
     to continue to place numbers
     till the moment we have a solution
     */
-        // if we're in the last cell
-        // that means we have the solution
-        if ((col == N - 1) && (row == N - 1)) {
+    public static void placeNextNumbers(int row, int col) {
+        if ((col == N - 1) && (row == N - 1)) {// if we're in the last cell that means we have the solution
             sudokuSolved = true;
-        }
-        // if not yet
-        else {
+        } else {// if not yet
             // if we're in the end of the row
-            // go to the next row
-            if (col == N - 1) backtrack(row + 1, 0);
+            if (col == N - 1) {
+                // go to the next row
+                backtrack(row + 1, 0);
+            } else {
                 // go to the next column
-            else backtrack(row, col + 1);
+                backtrack(row, col + 1);
+            }
         }
     }
 
+    //Backtracking
     public static void backtrack(int row, int col) {
-    /*
-    Backtracking
-    */
         // if the cell is empty
         if (board[row][col] == '.') {
             // iterate over all numbers from 1 to 9
@@ -87,13 +77,13 @@ public class Test {
                     }
                 }
             }
+        } else {
+            placeNextNumbers(row, col);
         }
-        else placeNextNumbers(row, col);
     }
 
     public static void solveSudoku(char[][] board) {
         Test.board = board;
-
         // init rows, columns and boxes
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -109,17 +99,17 @@ public class Test {
 
     public static void main(String[] args) {
         char[][] board = new char[][]{
-                {'.','.','9',  '7','4','8',  '.','.','.'},
-                {'7','.','.',  '.','.','.',  '.','.','.'},
-                {'.','2','.',  '1','.','9',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
 
-                {'.','.','7',  '.','.','.',  '2','4','.'},
-                {'.','6','4',  '.','1','.',  '5','9','.'},
-                {'.','9','8',  '.','.','.',  '3','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
 
-                {'.','.','.',  '8','.','3',  '.','2','.'},
-                {'.','.','.',  '.','.','.',  '.','.','6'},
-                {'.','.','.',  '2','7','5',  '9','.','.'}
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'},
+                {'.','.','.',  '.','.','.',  '.','.','.'}
         };
         solveSudoku(board);
         for (int i = 0; i < 9; i++) {

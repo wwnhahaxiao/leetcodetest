@@ -52,16 +52,16 @@ public class Test0037_SudokuSolver {
             }
         }
         //todo find correct option
-        for (int k = 1; k < 10; k++) {
-            int option = 0;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (list[i][j].size() == 1 && list[i][j].getFirst() == k) {
-
-                    }
-                }
-            }
-        }
+//        for (int k = 1; k < 10; k++) {
+//            int option = 0;
+//            for (int i = 0; i < 3; i++) {
+//                for (int j = 0; j < 3; j++) {
+//                    if (list[i][j].size() == 1 && list[i][j].getFirst() == k) {
+//
+//                    }
+//                }
+//            }
+//        }
         //reduce to array
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
