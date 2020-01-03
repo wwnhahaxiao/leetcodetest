@@ -1,61 +1,54 @@
 package com.roshan.leetcode;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Test {
-    public static boolean isMatch(String s, String p) {
-        int sn = s.length();
-        int pn = p.length();
-        int i = 0;
-        int j = 0;
-        int start = -1;
-        int match = 0;
-        while (i < sn) {
-            if (j < pn && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')) {
-                i++;
-                j++;
-            } else if (j < pn && p.charAt(j) == '*') {
-                start = j;
-                match = i;
-                j++;
-            } else if (start != -1) {
-                j = start + 1;
-                match++;
-                i = match;
-            } else {
-                return false;
-            }
-        }
-        while (j < pn) {
-            if (p.charAt(j) != '*') return false;
-            j++;
-        }
-        return true;
-    }
-
-    public static boolean isMatchA(String s, String p) {
-        int i = 0, j = 0, iStar = -1, jStar = -1;
-        while (i < s.length()) {
-            if (j < p.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')) {
-                ++i;
-                ++j;
-            } else if (j < p.length() && p.charAt(j) == '*') {
-                iStar = i;
-                jStar = j++;
-            } else if (iStar >= 0) {
-                i = ++iStar;
-                j = jStar + 1;
-            } else {
-                return false;
-            }
-        }
-        while (j < p.length() && p.charAt(j) == '*') {
-            ++j;//去除多余星号
-        }
-        return j == p.length();
-    }
-
     public static void main(String[] args) {
-        String s = "aaaab";
-        String p = "***a";
-        System.out.println(isMatchA(s, p));
+        int[] nums = {1,2,3};
+        List<List<Integer>> permute = permute(nums);
+        System.out.println(permute);
     }
+
+    public static void backtrack(int n, ArrayList<Integer> nums, List<List<Integer>> output, int first) {
+        // if all integers are used up
+        if (first == n) {
+            output.add(new ArrayList<>(nums));
+        }
+        for (int i = first; i < n; i++) {
+            // place i-th integer first
+            // in the current permutation
+            Collections.swap(nums, first, i);
+            // use next integers to complete the permutations
+            backtrack(n, nums, output, first + 1);
+            // backtrack
+            Collections.swap(nums, first, i);
+        }
+    }
+
+    public static List<List<Integer>> permute(int[] nums) {
+        // init output list
+        List<List<Integer>> output = new LinkedList<>();
+        // convert nums into list since the output is a list of lists
+        ArrayList<Integer> nums_lst = new ArrayList<>();
+        for (int num : nums) {
+            nums_lst.add(num);
+        }
+
+        int n = nums.length;
+        backtrack(n, nums_lst, output, 0);
+        return output;
+    }
+    /*
+    for 选择 in 选择列表:
+        # 做选择
+        将该选择从选择列表移除
+        路径.add(选择)
+        backtrack(路径, 选择列表)
+        # 撤销选择
+        路径.remove(选择)
+        将该选择再加入选择列表
+     */
 }
