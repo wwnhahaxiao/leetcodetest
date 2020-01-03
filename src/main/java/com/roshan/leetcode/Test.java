@@ -1,44 +1,61 @@
 package com.roshan.leetcode;
 
-import sun.misc.BASE64Encoder;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
-
 public class Test {
+    public static boolean isMatch(String s, String p) {
+        int sn = s.length();
+        int pn = p.length();
+        int i = 0;
+        int j = 0;
+        int start = -1;
+        int match = 0;
+        while (i < sn) {
+            if (j < pn && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')) {
+                i++;
+                j++;
+            } else if (j < pn && p.charAt(j) == '*') {
+                start = j;
+                match = i;
+                j++;
+            } else if (start != -1) {
+                j = start + 1;
+                match++;
+                i = match;
+            } else {
+                return false;
+            }
+        }
+        while (j < pn) {
+            if (p.charAt(j) != '*') return false;
+            j++;
+        }
+        return true;
+    }
 
-    public static String multiply(String num1, String num2) {
-        if (num1.equals("0") || num2.equals("0")) {
-            return "0";
-        }
-        int[] arr = new int[num1.length() + num2.length()];
-        for (int i = num1.length() - 1; i >= 0; i--) {
-            for (int j = num2.length() - 1; j >= 0; j--) {
-                arr[i + 1 + j + 1 - 1] += (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+    public static boolean isMatchA(String s, String p) {
+        int i = 0, j = 0, iStar = -1, jStar = -1;
+        while (i < s.length()) {
+            if (j < p.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')) {
+                ++i;
+                ++j;
+            } else if (j < p.length() && p.charAt(j) == '*') {
+                iStar = i;
+                jStar = j++;
+            } else if (iStar >= 0) {
+                i = ++iStar;
+                j = jStar + 1;
+            } else {
+                return false;
             }
         }
-        for (int i = arr.length - 1; i >= 0; i--) {
-            if (arr[i] >= 10) {
-                arr[i - 1] += arr[i] / 10;
-                arr[i] = arr[i] % 10;
-            }
+        while (j < p.length() && p.charAt(j) == '*') {
+            ++j;//去除多余星号
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                for (int j = i; j < arr.length; j++) {
-                    sb.append(arr[j]);
-                }
-                return sb.toString();
-            }
-        }
-        return "";
+        return j == p.length();
     }
 
     public static void main(String[] args) {
-        String num1 = "123";
-        String num2 = "456";
-        multiply(num1, num2);
+        String s = "aaaab";
+        String p = "***a";
+        System.out.println(isMatchA(s, p));
     }
 }
