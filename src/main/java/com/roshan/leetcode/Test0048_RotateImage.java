@@ -33,17 +33,27 @@ package com.roshan.leetcode;
 //        [16, 7,10,11]
 //        ]
 public class Test0048_RotateImage {
-    public static int[][] rotate(int[][] matrix) {
-        if (matrix == null || matrix[0].length < 2) {
-            return matrix;
+    private static void mySolution(int[][] matrix) {
+        //x,y -> y,n-x
+        int length = matrix.length;
+        for (int i = 0; i < (length + 1) / 2; i++) {
+            for (int j = 0; j < length / 2; j++) {
+                int nextI = i, nextJ = j, tempIndex = 0, temp = 0;
+                for (int k = 0; k < 3; k++) {
+                    tempIndex = nextI;
+                    nextI = nextJ;
+                    nextJ = length - 1 - tempIndex;
+                    temp = matrix[i][j];
+                    matrix[i][j] = matrix[nextI][nextJ];
+                    matrix[nextI][nextJ] = temp;
+                }
+            }
         }
-        int length = matrix[0].length;
-        int high = matrix.length;
-        return null;
     }
 
     public static void main(String[] args) {
-        int[][] demo = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
-        rotate(demo);
+        int[][] demo = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        mySolution(demo);
+        System.out.println(demo);
     }
 }
