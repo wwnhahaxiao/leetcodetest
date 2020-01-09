@@ -34,7 +34,7 @@ package com.roshan.leetcode;
 //        ]
 public class Test0048_RotateImage {
     private static void mySolution(int[][] matrix) {
-        //x,y -> y,n-x
+        //x,y -> y,n-x //n=边长-1
         int length = matrix.length;
         for (int i = 0; i < (length + 1) / 2; i++) {
             for (int j = 0; j < length / 2; j++) {
