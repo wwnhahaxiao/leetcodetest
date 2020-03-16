@@ -13,7 +13,7 @@ package com.roshan.leetcode;
 //        Output: false
 //        Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 public class Test0009_PalindromeNumber {
-    public static boolean isPalindrome(int x) {
+    private static boolean mySolution(int x) {
         String str = String.valueOf(x);
         int left = 0, right = str.length() - 1 - left;
         while (left <= right) {
@@ -25,8 +25,8 @@ public class Test0009_PalindromeNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome(121));
-        System.out.println(isPalindrome(-121));
-        System.out.println(isPalindrome(10));
+        System.out.println(mySolution(121));
+        System.out.println(mySolution(-121));
+        System.out.println(mySolution(10));
     }
 }

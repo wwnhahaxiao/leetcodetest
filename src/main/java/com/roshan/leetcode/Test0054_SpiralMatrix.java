@@ -21,7 +21,7 @@ import java.util.List;
 //        ]
 //        Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 public class Test0054_SpiralMatrix {
-    public static List<Integer> mySolution(int[][] matrix) {
+    private static List<Integer> mySolution(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return result;

@@ -31,7 +31,7 @@ package com.roshan.leetcode;
 //        Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
 //        Thefore INT_MIN (−231) is returned.
 public class Test0008_StringToInteger {
-    public static int myAtoi(String str) {
+    private static int mySolution(String str) {
         str = str.trim();
         int sign = 1, index = 0, res = 0;
         if (str.charAt(0) == '-') {
@@ -61,11 +61,11 @@ public class Test0008_StringToInteger {
     }
 
     public static void main(String[] args) {
-        System.out.println(myAtoi("42"));
-        System.out.println(myAtoi("   -42"));
-        System.out.println(myAtoi("4193 with words"));
-        System.out.println(myAtoi("words and 987"));
-        System.out.println(myAtoi("-91283472332"));
-        System.out.println(myAtoi("-2147483648"));
+        System.out.println(mySolution("42"));
+        System.out.println(mySolution("   -42"));
+        System.out.println(mySolution("4193 with words"));
+        System.out.println(mySolution("words and 987"));
+        System.out.println(mySolution("-91283472332"));
+        System.out.println(mySolution("-2147483648"));
     }
 }

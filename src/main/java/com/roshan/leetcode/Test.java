@@ -11,7 +11,7 @@ public class Test {
         List<Integer> integers = mySolution(matrix);
         System.out.println(integers);
     }
-    public static List<Integer> mySolution(int[][] matrix) {
+    private static List<Integer> mySolution(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return result;

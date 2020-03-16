@@ -26,7 +26,7 @@ public class Test0003_LengthOfLongestSubstring {
     }
 
 
-    public static int lengthOfLongestSubstring(String s) {
+    private static int lengthOfLongestSubstring(String s) {
         int n = s.length(), ans = 0, len = 0;
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < n; i++) {

@@ -1,9 +1,7 @@
 package com.roshan.leetcode;
 
-import java.util.Stack;
-
 public class Test0038_CountAndSay {
-    public static String mySolution(int n) {
+    private static String mySolution(int n) {
         String str = "1";
         for (int i = 1; i < n; i++) {
             char[] chars = str.toCharArray();

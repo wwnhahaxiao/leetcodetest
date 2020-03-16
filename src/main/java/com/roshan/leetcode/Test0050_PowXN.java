@@ -14,7 +14,7 @@ package com.roshan.leetcode;
 //        -100.0 < x < 100.0
 //        n is a 32-bit signed integer, within the range [−231, 231 − 1]
 public class Test0050_PowXN {
-    public static double mySolution(double x, int n) {
+    private static double mySolution(double x, int n) {
         if (x == 0) {
             return 0;
         }

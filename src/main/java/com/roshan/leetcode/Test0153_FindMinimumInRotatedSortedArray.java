@@ -14,7 +14,7 @@ import java.util.List;
 //        Input: [4,5,6,7,0,1,2]
 //        Output: 0
 public class Test0153_FindMinimumInRotatedSortedArray {
-    public static int findMin(int[] nums) {
+    private static int mySolution(int[] nums) {
         int left = 0, right = nums.length - 1;
         while (left < right - 1) {
             System.out.println("counting");

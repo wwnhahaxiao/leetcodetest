@@ -9,7 +9,7 @@ import java.util.LinkedList;
 //        Output: 7 -> 0 -> 8
 //        Explanation: 342 + 465 = 807.
 public class Test0002_AddTwoNumbers {
-    public static LinkedList mySolution(LinkedList<Integer> l1, LinkedList<Integer> l2) {
+    private static LinkedList mySolution(LinkedList<Integer> l1, LinkedList<Integer> l2) {
         int length = l1.size() > l2.size() ? l1.size() : l2.size();
         LinkedList<Integer> ret = new LinkedList<>();
         int extend = 0;

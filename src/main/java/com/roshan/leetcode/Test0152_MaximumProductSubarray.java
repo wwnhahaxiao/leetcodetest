@@ -11,7 +11,7 @@ package com.roshan.leetcode;
 //    Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 public class Test0152_MaximumProductSubarray {
 
-    public static int maxProduct(int[] nums) {
+    private static int mySolution(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -29,8 +29,8 @@ public class Test0152_MaximumProductSubarray {
         int[] a = new int[]{2,3,-2,4};
         int[] b = new int[]{-2,0,-1};
         int[] c = new int[]{-2,0,1,2,3,0,-2,1,-2,2,3,-2,-2};
-        System.out.println(maxProduct(a));
-        System.out.println(maxProduct(b));
-        System.out.println(maxProduct(c));
+        System.out.println(mySolution(a));
+        System.out.println(mySolution(b));
+        System.out.println(mySolution(c));
     }
 }

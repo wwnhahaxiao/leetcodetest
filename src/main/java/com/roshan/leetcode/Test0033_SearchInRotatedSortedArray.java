@@ -12,7 +12,7 @@ package com.roshan.leetcode;
 //        Input: nums = [4,5,6,7,0,1,2], target = 3
 //        Output: -1
 public class Test0033_SearchInRotatedSortedArray {
-    public static int mySolution(int[] nums, int target) {
+    private static int mySolution(int[] nums, int target) {
         if (nums.length == 0) {
             return -1;
         }
@@ -51,7 +51,7 @@ public class Test0033_SearchInRotatedSortedArray {
         return -1;
     }
 
-    public static int search(int[] nums, int target) {
+    private static int search(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         while (left < right) {
             int mid = (left + right) / 2;

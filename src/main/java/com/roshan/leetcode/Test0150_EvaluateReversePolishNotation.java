@@ -27,7 +27,7 @@ public class Test0150_EvaluateReversePolishNotation {
 //            = (0 + 17) + 5
 //            = 17 + 5
 //            = 22
-    public static int evalRPN(String[] tokens) {
+    private static int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i].equals("+")) {

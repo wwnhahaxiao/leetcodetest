@@ -3,7 +3,7 @@ package com.roshan.leetcode;
 import java.util.Arrays;
 
 public class SliderTest {
-    public static int mySolution(int[] nums) {
+    private static int mySolution(int[] nums) {
         if (nums.length == 0) {
             return 0;
         }

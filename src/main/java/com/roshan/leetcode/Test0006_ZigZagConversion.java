@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test0006_ZigZagConversion {
-    public static String mySolution(String s, int numRows) {
+    private static String mySolution(String s, int numRows) {
         List<List<String>> rows = new ArrayList<>();
         for (int i = 0; i < numRows; i++) {
             List<String> row = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Test0006_ZigZagConversion {
         System.out.println("s2:" + (t4 - t3));
     }
 
-    public static String convert(String s, int numRows) {
+    private static String convert(String s, int numRows) {
 
         if (numRows == 1) {
             return s;
@@ -95,7 +95,7 @@ public class Test0006_ZigZagConversion {
         return ret.toString();
     }
 
-    public static String convert1(String s, int numRows) {
+    private static String convert1(String s, int numRows) {
 
         if (numRows == 1) {
             return s;

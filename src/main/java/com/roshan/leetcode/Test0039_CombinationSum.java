@@ -23,7 +23,7 @@ import java.util.*;
 //          [3,5]
 //        ]
 public class Test0039_CombinationSum {
-    public static List<List<Integer>> mySolution(int[] candidates, int target) {
+    private static List<List<Integer>> mySolution(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(candidates);
         for (int i : candidates) {
