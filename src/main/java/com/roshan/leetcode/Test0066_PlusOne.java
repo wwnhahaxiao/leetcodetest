@@ -30,7 +30,6 @@ public class Test0066_PlusOne {
 
     public static void main(String[] args) {
         int[] demo = {9};
-        int[] ints = mySolution(demo);
-        System.out.println(ints);
+        System.out.println(Arrays.toString(mySolution(demo)));
     }
 }
