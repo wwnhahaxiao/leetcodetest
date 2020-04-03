@@ -1,6 +1,8 @@
 package com.roshan.leetcode;
 
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 //Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
@@ -16,50 +18,31 @@ public class Test0076_MinimumWindowSubstring {
         for (char c : t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        int left = -1, length = Integer.MAX_VALUE;
+        int left = 0, length = Integer.MAX_VALUE;
         String result = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (!map.containsKey(c)) {
                 continue;
             }
-            if (left == -1) {
-                left = i;
-            }
             map.computeIfPresent(c, (k, v) -> v - 1);
-            if (check(map) == 0) {
-                if ((i - left) < length) {
-                    length = i - left;
-                    result = s.substring(left, i + 1);
-                }
-            }
-            if (map.get(c) < 0 && s.charAt(left) == c) {
-                while (left < i) {
-                    if (map.containsKey(s.charAt(left))) {
-                        if (map.get(s.charAt(left)) < 0) {
-                            map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
-                        } else {
-                            if ((i - left) < length && check(map) <= 0) {
-                                length = i - left;
-                                result = s.substring(left, i + 1);
-                            }
-                            System.out.println();
-                            break;
+            if (map.values().stream().max(Comparator.comparingInt(o -> o)).get() <= 0) {
+                while (left <= i) {
+                    char leftStr = s.charAt(left);
+                    if (map.containsKey(leftStr) && map.get(leftStr) < 0) {
+                        map.computeIfPresent(leftStr, (k, v) -> v + 1);
+                    } else if (map.containsKey(leftStr) && map.get(leftStr) >= 0) {
+                        if (i - left < length) {
+                            length = i - left;
+                            result = s.substring(left, i + 1);
                         }
+                        break;
                     }
                     left++;
                 }
             }
         }
         return result;
-    }
-
-    private static int check(Map<Character, Integer> map) {
-        int contains = Integer.MIN_VALUE;
-        for (Integer count : map.values()) {
-            contains = Math.max(contains, count);
-        }
-        return contains;
     }
 
     public static void main(String[] args) {
