@@ -45,9 +45,10 @@ public class Test0082_RemoveDuplicatesFromSortedListII {
         ListNode listNode = mySolution(origin.next);
         System.out.println(listNode);
     }
-}
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { val = x; }
+
+    private static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
 }
