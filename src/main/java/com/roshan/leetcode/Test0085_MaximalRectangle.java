@@ -12,7 +12,7 @@ import java.util.Arrays;
 //        ["1","0","0","1","0"]
 //        ]
 //        Output: 6
-public class Test0085MaximalRectangle {
+public class Test0085_MaximalRectangle {
 
     private static int mySolution(char[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) {
