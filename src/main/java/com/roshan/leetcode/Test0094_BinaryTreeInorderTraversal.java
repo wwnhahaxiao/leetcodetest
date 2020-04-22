@@ -1,5 +1,7 @@
 package com.roshan.leetcode;
 
+import com.roshan.leetcode.baseStructure.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,13 +57,4 @@ public class Test0094_BinaryTreeInorderTraversal {
         System.out.println(integers);
     }
 
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }

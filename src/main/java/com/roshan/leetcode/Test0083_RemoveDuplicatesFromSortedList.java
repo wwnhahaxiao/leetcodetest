@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Given a sorted linked list, delete all duplicates such that each element appear only once.
 //        Example 1:
 //        Input: 1->1->2
@@ -34,12 +37,6 @@ public class Test0083_RemoveDuplicatesFromSortedList {
         }
         ListNode listNode = mySolution(origin.next);
         System.out.println(listNode);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
     }
 }
 

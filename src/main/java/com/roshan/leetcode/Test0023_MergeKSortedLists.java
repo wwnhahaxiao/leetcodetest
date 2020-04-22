@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 //Example:
 //Input:
@@ -9,11 +12,6 @@ package com.roshan.leetcode;
 //]
 //Output: 1->1->2->3->4->4->5->6
 public class Test0023_MergeKSortedLists {
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
     public ListNode mergeKLists(ListNode[] lists) {
         int size = lists.length;
         if (size == 0) {

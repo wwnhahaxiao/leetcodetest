@@ -1,5 +1,7 @@
 package com.roshan.leetcode;
 
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Given a linked list, remove the n-th node from the end of list and return its head.
 //        Example:
 //        Given linked list: 1->2->3->4->5, and n = 2.
@@ -9,14 +11,6 @@ package com.roshan.leetcode;
 //        Follow up:
 //        Could you do this in one pass?
 public class Test0019_RemoveNthNodeFromEndofList {
-    /**
-     * Definition for singly-linked head.
-     * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) { val = x; }
-     * }
-     */
     private static ListNode mySolution(ListNode head, int n) {
         ListNode first = new ListNode(0);
         first.next = head;
@@ -36,13 +30,6 @@ public class Test0019_RemoveNthNodeFromEndofList {
         }
         first.next = first.next.next;
         return head;
-    }
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
     }
 
     public static void main(String[] args) {

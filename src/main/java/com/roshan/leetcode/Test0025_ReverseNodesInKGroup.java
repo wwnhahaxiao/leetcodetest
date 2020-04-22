@@ -1,5 +1,7 @@
 package com.roshan.leetcode;
 
+import com.roshan.leetcode.baseStructure.ListNode;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,18 +15,6 @@ import java.util.List;
 //        Only constant extra memory is allowed.
 //        You may not alter the values in the list's nodes, only nodes itself may be changed.
 public class Test0025_ReverseNodesInKGroup {
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(val);
-        }
-    }
     private static ListNode mySolution(ListNode head, int k) {
         ListNode result = new ListNode(-1);
         ListNode ori = result;
@@ -99,18 +89,6 @@ public class Test0025_ReverseNodesInKGroup {
         long l = System.currentTimeMillis();
         ListNode node = mySolution2(head, 4);
         System.out.println(System.currentTimeMillis() - l);
-        print(node);
-    }
-    private static void print(ListNode listNode) {
-        if (listNode == null) {
-            System.out.println("null");
-            return;
-        }
-        System.out.print(listNode.val);
-        while (listNode.next != null) {
-            listNode = listNode.next;
-            System.out.print(" -> " + listNode.val);
-        }
-        System.out.println();
+        node.print();
     }
 }

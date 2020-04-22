@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 //        You should preserve the original relative order of the nodes in each of the two partitions.
 //        Example:
@@ -35,14 +38,5 @@ public class Test0086_PartitionList {
         }
         ListNode listNode = mySolution(origin.next, 3);
         System.out.println(listNode);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

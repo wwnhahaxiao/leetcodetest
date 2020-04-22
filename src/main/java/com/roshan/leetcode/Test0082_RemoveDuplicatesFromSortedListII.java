@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 //        Return the linked list sorted as well.
 //        Example 1:
@@ -44,11 +47,5 @@ public class Test0082_RemoveDuplicatesFromSortedListII {
         }
         ListNode listNode = mySolution(origin.next);
         System.out.println(listNode);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
     }
 }

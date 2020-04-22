@@ -1,18 +1,12 @@
 package com.roshan.leetcode;
 
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 //        Example:
 //        Input: 1->2->4, 1->3->4
 //        Output: 1->1->2->3->4->4
 public class Test0021_MergeTwoSortedLists {
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
     private static ListNode mySolution(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
@@ -34,18 +28,6 @@ public class Test0021_MergeTwoSortedLists {
         }
         result.next = l1 == null ? l2 : l1;
         return head.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-        @Override
-        public String toString() {
-            return String.valueOf(val);
-        }
     }
 
     private static ListNode mergeTwoLists(ListNode l1, ListNode l2) {

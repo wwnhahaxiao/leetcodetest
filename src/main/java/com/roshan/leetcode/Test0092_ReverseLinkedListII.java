@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Reverse a linked list from position m to n. Do it in one-pass.
 //        Note: 1 ≤ m ≤ n ≤ length of list.
 //        Example:
@@ -46,11 +49,5 @@ public class Test0092_ReverseLinkedListII {
         }
         ListNode listNode = mySolution(origin.next, 1, 5);
         System.out.println(listNode);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
     }
 }

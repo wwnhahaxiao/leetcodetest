@@ -1,4 +1,7 @@
 package com.roshan.leetcode;
+
+import com.roshan.leetcode.baseStructure.ListNode;
+
 //Given a linked list, rotate the list to the right by k places, where k is non-negative.
 //        Example 1:
 //        Input: 1->2->3->4->5->NULL, k = 2
@@ -38,12 +41,6 @@ public class Test0061_RotateList {
         head = ori.next;
         ori.next = null;
         return head;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
     }
 
     public static void main(String[] args) {
