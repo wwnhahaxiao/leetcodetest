@@ -1,5 +1,7 @@
 package com.roshan.leetcode;
 
+import com.roshan.leetcode.baseStructure.ListNode;
+
 import java.util.LinkedList;
 
 //You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -9,42 +11,42 @@ import java.util.LinkedList;
 //        Output: 7 -> 0 -> 8
 //        Explanation: 342 + 465 = 807.
 public class Test0002_AddTwoNumbers {
-    private static LinkedList mySolution(LinkedList<Integer> l1, LinkedList<Integer> l2) {
-        int length = l1.size() > l2.size() ? l1.size() : l2.size();
-        LinkedList<Integer> ret = new LinkedList<>();
-        int extend = 0;
-        for (int i = 0; i < length; i++) {
-            int a = 0;
-            int b = 0;
-            if (l1.size() >= i) {
-                a = l1.get(i);
+    public static ListNode mySolution(ListNode l1, ListNode l2) {
+        int extra = 0;
+        ListNode result = new ListNode(0);
+        ListNode curr = result;
+        while (l1 != null || l2 != null) {
+            int a = l1 == null ? 0 : l1.val, b = l2 == null ? 0 : l2.val;
+            int value = a + b + extra;
+            if (value > 9) {
+                extra = 1;
+                value -= 10;
+            } else {
+                extra = 0;
             }
-            if (l2.size() >= i) {
-                b = l2.get(i);
+            curr.next = new ListNode(value);
+            curr = curr.next;
+            if (l1 != null) {
+                l1 = l1.next;
             }
-            int sum = a + b;
-            sum += extend;
-            extend = sum / 10;
-            ret.add(sum % 10);
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
-        if (extend > 0) {
-            ret.add(extend);
+        if (extra == 1)  {
+            curr.next = new ListNode(1);
         }
-        return ret;
+        return result.next;
     }
 
     public static void main(String[] args) {
-        LinkedList<Integer> a = new LinkedList<>();
-        a.add(0);
-        a.add(0);
-        a.add(5);
-        LinkedList<Integer> b = new LinkedList<>();
-        b.add(0);
-        b.add(0);
-        b.add(5);
-        LinkedList<Integer> linkedList = mySolution(a, b);
-        for (Integer n : linkedList) {
-            System.out.println(n);
-        }
+        ListNode a = new ListNode(2);
+        a.next = new ListNode(4);
+        a.next.next = new ListNode(3);
+        ListNode b = new ListNode(5);
+        b.next = new ListNode(6);
+        b.next.next = new ListNode(4);
+        ListNode result = mySolution(a, b);
+        System.out.println(result);
     }
 }
