@@ -11,22 +11,23 @@ package com.roshan.leetcode;
 //        Input: 120
 //        Output: 21
 //        Note:
-//        Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+//        Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−2^31,  2^31 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 public class Test0007_ReverseInteger {
     private static int mySolution(int x) {
-        long r = 0;
+        int result = 0;
         while (x != 0) {
-            r = r * 10 + x % 10;
-            x /= 10;
+            int i = x % 10;
+            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && i > 7)
+                    || result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE && i < -8)) {
+                return 0;
+            }
+            result = result * 10 + i;
+            x = x / 10;
         }
-        if (r >= Integer.MIN_VALUE && r <= Integer.MAX_VALUE) {
-            return (int) r;
-        } else {
-            return 0;
-        }
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(mySolution(1534236469));
+        System.out.println(mySolution(123));
     }
 }
