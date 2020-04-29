@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 //Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 //        For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
@@ -17,11 +18,11 @@ import com.roshan.leetcode.baseStructure.TreeNode;
 //        3    3
 //        Follow up: Solve it both recursively and iteratively.
 public class Test0101_SymmetricTree {
-    private static boolean mySolution(TreeNode root) {
+    private boolean isSymmetric(TreeNode root) {
         return isMirror(root, root);
     }
 
-    private static boolean isMirror(TreeNode a, TreeNode b) {
+    private boolean isMirror(TreeNode a, TreeNode b) {
         if (a == null && b == null) {
             return true;
         } else if (a != null && b != null) {
@@ -31,7 +32,8 @@ public class Test0101_SymmetricTree {
         }
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(2);
@@ -47,6 +49,6 @@ public class Test0101_SymmetricTree {
         root.right.left.right = new TreeNode(7);
         root.right.right.left = new TreeNode(6);
         root.right.right.right = new TreeNode(5);
-        System.out.println(mySolution(root));
+        System.out.println(isSymmetric(root));
     }
 }

@@ -33,25 +33,8 @@ public class Test0019_RemoveNthNodeFromEndofList {
     }
 
     public static void main(String[] args) {
-        ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2);
-//        listNode.next.next = new ListNode(3);
-//        listNode.next.next.next = new ListNode(4);
-//        listNode.next.next.next.next = new ListNode(5);
-        ListNode listNode1 = mySolution(listNode, 1);
-        print(listNode1);
-    }
-
-    private static void print(ListNode listNode) {
-        if (listNode == null) {
-            System.out.println("null");
-            return;
-        }
-        System.out.print(listNode.val);
-        while (listNode.next != null) {
-            listNode = listNode.next;
-            System.out.print(" -> " + listNode.val);
-        }
-        System.out.println();
+        ListNode head = ListNode.build(1, 2, 3, 4, 5);
+        ListNode listNode = mySolution(head, 1);
+        listNode.print();
     }
 }

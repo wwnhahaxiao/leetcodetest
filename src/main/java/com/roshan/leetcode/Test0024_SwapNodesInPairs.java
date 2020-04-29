@@ -8,7 +8,7 @@ import com.roshan.leetcode.baseStructure.ListNode;
 //        Given 1->2->3->4, you should return the list as 2->1->4->3.
 public class Test0024_SwapNodesInPairs {
 
-    private ListNode mySolution(ListNode head) {
+    private static ListNode mySolution(ListNode head) {
         ListNode ori = new ListNode(-1);
         ori.next = head;
         ListNode result = ori;
@@ -21,5 +21,11 @@ public class Test0024_SwapNodesInPairs {
             ori = ori.next.next;
         }
         return result.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = ListNode.build(1, 2, 3, 4);
+        ListNode listNode = mySolution(head);
+        listNode.print();
     }
 }

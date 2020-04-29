@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -16,18 +17,19 @@ import java.util.List;
 //         15   7
 //        return its depth = 3.
 public class Test0104_MaximumDepthOfBinaryTree {
-    private static int mySolution(TreeNode root) {
+    private int maxDepth(TreeNode root) {
         if (root == null) return 0;
-        return Math.max(mySolution(root.left), mySolution(root.right)) + 1;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
-        int deep = mySolution(root);
+        int deep = maxDepth(root);
         System.out.println(deep);
     }
 }

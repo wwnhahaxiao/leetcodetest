@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ import java.util.Queue;
 //        [15,7]
 //        ]
 public class Test0103_BinaryTreeZigzagLevelOrderTraversal {
-    private static List<List<Integer>> mySolution(TreeNode root) {
+    private List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return result;
@@ -62,13 +63,14 @@ public class Test0103_BinaryTreeZigzagLevelOrderTraversal {
         return result;
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
-        List<List<Integer>> lists = mySolution(root);
+        List<List<Integer>> lists = zigzagLevelOrder(root);
         System.out.println(lists);
     }
 }

@@ -45,26 +45,10 @@ public class Test0021_MergeTwoSortedLists {
     }
 
     public static void main(String[] args) {
-        ListNode l1 = new ListNode(1);
-        l1.next = new ListNode(2);
-        l1.next.next = new ListNode(4);
-        ListNode l2 = new ListNode(1);
-        l2.next = new ListNode(3);
-        l2.next.next = new ListNode(4);
+        ListNode l1 = ListNode.build(1, 2, 4);
+        ListNode l2 = ListNode.build(1, 3, 4);
         ListNode listNode = mergeTwoLists(l1, l2);
-        print(listNode);
+        listNode.print();
     }
 
-    private static void print(ListNode listNode) {
-        if (listNode == null) {
-            System.out.println("null");
-            return;
-        }
-        System.out.print(listNode.val);
-        while (listNode.next != null) {
-            listNode = listNode.next;
-            System.out.print(" -> " + listNode.val);
-        }
-        System.out.println();
-    }
 }

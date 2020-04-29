@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 //Given two binary trees, write a function to check if they are the same or not.
 //        Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
@@ -23,28 +24,22 @@ import com.roshan.leetcode.baseStructure.TreeNode;
 //                [1,2,1],   [1,1,2]
 //        Output: false
 public class Test0100_SameTree {
-    private static boolean mySolution(TreeNode p, TreeNode q) {
+    private boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {
             return true;
         } else if (p != null && q != null) {
-            return p.val == q.val && mySolution(p.left, q.left) && mySolution(p.right, q.right);
+            return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
         } else {
             return false;
         }
     }
 
-    public static void main(String[] args) {
-//        TreeNode first = new TreeNode(1);
-//        first.left = new TreeNode(2);
-//        first.right = new TreeNode(3);
-//        TreeNode second = new TreeNode(1);
-//        second.left = new TreeNode(2);
-//        second.right = new TreeNode(3);
-
+    @Test
+    public void test() {
         TreeNode first = new TreeNode(1);
         first.left = new TreeNode(2);
         TreeNode second = new TreeNode(1);
         second.right = new TreeNode(2);
-        System.out.println(mySolution(first, second));
+        System.out.println(isSameTree(first, second));
     }
 }

@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +19,12 @@ import java.util.Map;
 //          /  \
 //         15   7
 public class Test0106_ConstructBinaryTreeFromInorderAndPostorderTraversal {
-    private static int[] in, post;
-    private static Map<Integer, Integer> map;
-    private static int postIndex;
 
-    private static TreeNode mySolution(int[] inorder, int[] postorder) {
+    private int[] in, post;
+    private Map<Integer, Integer> map;
+    private int postIndex;
+
+    private TreeNode buildTree(int[] inorder, int[] postorder) {
         in = inorder;
         post = postorder;
         map = new HashMap<>();
@@ -33,7 +35,7 @@ public class Test0106_ConstructBinaryTreeFromInorderAndPostorderTraversal {
         return buildNode(0, inorder.length - 1);
     }
 
-    private static TreeNode buildNode(int start, int end) {
+    private TreeNode buildNode(int start, int end) {
         if (start == end) {
             postIndex--;
             return new TreeNode(in[start]);
@@ -49,10 +51,11 @@ public class Test0106_ConstructBinaryTreeFromInorderAndPostorderTraversal {
         }
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         int[] inOrder = {9,3,15,20,7};
         int[] postorder = {9,15,7,20,3};
-        TreeNode treeNode = mySolution(inOrder, postorder);
+        TreeNode treeNode = buildTree(inOrder, postorder);
         System.out.println(treeNode);
     }
 }

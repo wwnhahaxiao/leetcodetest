@@ -1,6 +1,7 @@
 package com.roshan.leetcode;
 
 import com.roshan.leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,9 @@ import java.util.List;
 //        [15,7]
 //        ]
 public class Test0102_BinaryTreeLevelOrderTraversal {
-    private static List<List<Integer>> result;
+    private List<List<Integer>> result;
 
-    private static List<List<Integer>> mySolution(TreeNode root) {
+    private List<List<Integer>> levelOrder(TreeNode root) {
         result = new ArrayList<>();
         if (root == null) return result;
         List<TreeNode> rootLevel = new ArrayList<>();
@@ -31,7 +32,7 @@ public class Test0102_BinaryTreeLevelOrderTraversal {
         return result;
     }
 
-    private static void levelTraversal(List<TreeNode> level) {
+    private void levelTraversal(List<TreeNode> level) {
         List<TreeNode> nextLevel = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         for (TreeNode node : level) {
@@ -49,13 +50,14 @@ public class Test0102_BinaryTreeLevelOrderTraversal {
         }
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
-        List<List<Integer>> lists = mySolution(root);
+        List<List<Integer>> lists = levelOrder(root);
         System.out.println(lists);
     }
 }
