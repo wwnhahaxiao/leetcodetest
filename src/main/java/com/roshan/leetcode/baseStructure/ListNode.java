@@ -8,6 +8,16 @@ public class ListNode {
         val = x;
     }
 
+    public static ListNode build(int... arr) {
+        ListNode curr = new ListNode(0);
+        ListNode pre = curr;
+        for (int v : arr) {
+            curr.next = new ListNode(v);
+            curr = curr.next;
+        }
+        return pre.next;
+    }
+
     public void print() {
         System.out.print(val);
         ListNode nextNode = next;
