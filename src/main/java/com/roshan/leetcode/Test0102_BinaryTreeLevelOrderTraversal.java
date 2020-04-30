@@ -52,11 +52,7 @@ public class Test0102_BinaryTreeLevelOrderTraversal {
 
     @Test
     public void test() {
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(9);
-        root.right = new TreeNode(20);
-        root.right.left = new TreeNode(15);
-        root.right.right = new TreeNode(7);
+        TreeNode root = TreeNode.build(3, 9, 20, null, null, 15, 7);
         List<List<Integer>> lists = levelOrder(root);
         System.out.println(lists);
     }

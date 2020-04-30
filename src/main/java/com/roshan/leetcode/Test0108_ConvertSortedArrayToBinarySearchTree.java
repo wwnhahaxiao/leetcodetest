@@ -39,7 +39,7 @@ public class Test0108_ConvertSortedArrayToBinarySearchTree {
 
     @Test
     public void test() {
-        int[] nums = {-10,-3,0,5,9};
+        int[] nums = {-10, -3, 0, 5, 9};
         TreeNode node = sortedArrayToBST(nums);
         System.out.println(node);
     }

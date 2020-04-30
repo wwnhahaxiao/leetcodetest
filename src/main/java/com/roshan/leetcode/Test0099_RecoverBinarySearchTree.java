@@ -81,14 +81,7 @@ public class Test0099_RecoverBinarySearchTree {
     }
 
     public static void main(String[] args) {
-//        TreeNode root = new TreeNode(1);
-//        root.left = new TreeNode(3);
-//        root.left.right = new TreeNode(2);
-
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(1);
-        root.right = new TreeNode(4);
-        root.right.left = new TreeNode(2);
+        TreeNode root = TreeNode.build(3, 1, 4, null, null, 2);
         mySolution(root);
         System.out.println(root);
     }

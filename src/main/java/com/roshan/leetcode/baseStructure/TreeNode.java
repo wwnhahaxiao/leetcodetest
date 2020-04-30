@@ -1,7 +1,9 @@
 package com.roshan.leetcode.baseStructure;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TreeNode {
     public int val;
@@ -13,22 +15,38 @@ public class TreeNode {
     }
 
     public static TreeNode build(Integer... nums) {
-        return buildTree(new LinkedList(Arrays.asList(nums)));
+        if (nums.length == 0) return null;
+        LinkedList<Integer> list = new LinkedList<>(Arrays.asList(nums));
+        List<TreeNode> level = new ArrayList<>();
+        TreeNode root = new TreeNode(list.remove());
+        level.add(root);
+        buildTree(list, level);
+        return root;
     }
 
-    private static TreeNode buildTree(LinkedList<Integer> nums) {
-        if (nums.size() == 0) {
-            return null;
-        } else {
-            Integer value = nums.remove();
-            if (value == null) {
-                return null;
+    private static void buildTree(LinkedList<Integer> nums, List<TreeNode> level) {
+        List<TreeNode> nextLevel = new ArrayList<>();
+        for (TreeNode node : level) {
+            if (nums.size() == 0) {
+                return;
             }
-            TreeNode node = new TreeNode(value);
-            node.left = buildTree(nums);
-            node.right = buildTree(nums);
-            return node;
+            Integer leftValue = nums.remove();
+            if (leftValue != null) {
+                TreeNode left = new TreeNode(leftValue);
+                node.left = left;
+                nextLevel.add(left);
+            }
+            if (nums.size() == 0) {
+                return;
+            }
+            Integer rightValue = nums.remove();
+            if (rightValue != null) {
+                TreeNode right = new TreeNode(rightValue);
+                node.right = right;
+                nextLevel.add(right);
+            }
         }
+        buildTree(nums, nextLevel);
     }
 
     @Override

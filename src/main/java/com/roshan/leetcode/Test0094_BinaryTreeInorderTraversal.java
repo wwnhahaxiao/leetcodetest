@@ -50,9 +50,7 @@ public class Test0094_BinaryTreeInorderTraversal {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.right = new TreeNode(2);
-        root.right.left = new TreeNode(3);
+        TreeNode root = TreeNode.build(1,null,2,3);
         List<Integer> integers = mySolution(root);
         System.out.println(integers);
     }

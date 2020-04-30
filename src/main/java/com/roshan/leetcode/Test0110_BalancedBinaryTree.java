@@ -28,34 +28,30 @@ import java.util.List;
 //        4   4
 //        Return false.
 public class Test0110_BalancedBinaryTree {
-    private List<Integer> height;
+    private boolean balance;
 
     private boolean isBalanced(TreeNode root) {
-        height = new ArrayList<>();
-        findLeaf(root, 0);
-        int max = 0, min = Integer.MAX_VALUE;
-        for (Integer high : height) {
-            max = Math.max(max, high);
-            min = Math.min(min, high);
-            if (max - min > 1) {
-                return false;
-            }
-        }
-        return true;
+        balance = true;
+        getHeight(root);
+        return balance;
     }
 
-    private void findLeaf(TreeNode treeNode, int high) {
-        if (treeNode == null) {
-            height.add(high);
-        } else {
-            findLeaf(treeNode.left, high + 1);
-            findLeaf(treeNode.right, high + 1);
+    private int getHeight(TreeNode treeNode) {
+        if (treeNode == null) return 1;
+        if (!balance) {
+            return 0;
         }
+        int left = getHeight(treeNode.left);
+        int right = getHeight(treeNode.right);
+        if (Math.abs(left - right) > 1) {
+            balance = false;
+        }
+        return Math.max(left, right) + 1;
     }
 
     @Test
     public void test() {
-        TreeNode root = TreeNode.build(3,9,20,null,null,15,7);
+        TreeNode root = TreeNode.build(1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, null, null, 5, 5);
         boolean balanced = isBalanced(root);
         System.out.println(balanced);
     }

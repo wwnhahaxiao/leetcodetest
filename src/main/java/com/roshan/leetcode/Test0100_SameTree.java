@@ -36,10 +36,8 @@ public class Test0100_SameTree {
 
     @Test
     public void test() {
-        TreeNode first = new TreeNode(1);
-        first.left = new TreeNode(2);
-        TreeNode second = new TreeNode(1);
-        second.right = new TreeNode(2);
+        TreeNode first = TreeNode.build(1, 2);
+        TreeNode second = TreeNode.build(1, null, 2);
         System.out.println(isSameTree(first, second));
     }
 }

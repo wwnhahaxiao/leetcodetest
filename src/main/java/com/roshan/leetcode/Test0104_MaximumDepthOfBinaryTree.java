@@ -24,11 +24,7 @@ public class Test0104_MaximumDepthOfBinaryTree {
 
     @Test
     public void test() {
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(9);
-        root.right = new TreeNode(20);
-        root.right.left = new TreeNode(15);
-        root.right.right = new TreeNode(7);
+        TreeNode root = TreeNode.build(3, 9, 20, null, null, 15, 7);
         int deep = maxDepth(root);
         System.out.println(deep);
     }
