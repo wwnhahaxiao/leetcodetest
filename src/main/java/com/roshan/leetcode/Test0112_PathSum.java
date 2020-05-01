@@ -28,7 +28,7 @@ public class Test0112_PathSum {
 
     @Test
     public void test() {
-        TreeNode node = TreeNode.build(5,4,8,11,null,13,4,7,2,null,null,null,1);
+        TreeNode node = TreeNode.build(5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1);
         boolean b = hasPathSum(node, 22);
         System.out.println(b);
     }
