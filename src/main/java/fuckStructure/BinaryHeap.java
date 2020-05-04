@@ -1,6 +1,12 @@
 package fuckStructure;
 
-public class BinaryHeap<AnyType extends Comparable> {
+/**
+ * 二叉堆
+ * 左右子节点均小于父节点的平衡二叉树
+ * deleteMin复杂度O(log N) insert复杂度O(log N)
+ * @param <AnyType>
+ */
+public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
     private static final int DEFAULT_CAPACITY = 10;
     private int currentSize;
     private AnyType[] array;
@@ -96,7 +102,7 @@ public class BinaryHeap<AnyType extends Comparable> {
     }
 
     public static void main(String[] args) {
-        BinaryHeap<Integer> heap = new BinaryHeap();
+        BinaryHeap<Integer> heap = new BinaryHeap<>();
         heap.insert(13);
         heap.insert(14);
         heap.insert(16);

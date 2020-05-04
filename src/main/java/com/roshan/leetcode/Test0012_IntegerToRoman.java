@@ -32,7 +32,7 @@ package com.roshan.leetcode;
 //        Output: "MCMXCIV"
 //        Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 public class Test0012_IntegerToRoman {
-    private static String intToRoman(int num) {
+    private static String mySolution(int num) {
         int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] romans = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         StringBuilder sb = new StringBuilder();
@@ -46,7 +46,7 @@ public class Test0012_IntegerToRoman {
     }
 
     public static void main(String[] args) {
-        String s = intToRoman(999);
+        String s = mySolution(999);
         System.out.println(s);
     }
 }
