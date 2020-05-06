@@ -3,8 +3,6 @@ package com.roshan.leetcode;
 import com.roshan.leetcode.baseStructure.Node;
 import org.junit.Test;
 
-import java.util.LinkedList;
-
 //You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
 //        struct Node {
 //        int val;
@@ -27,45 +25,22 @@ import java.util.LinkedList;
 public class Test0116_PopulatingNextRightPointersInEachNode {
     private Node connect(Node root) {
         if (root == null) {
-            return root;
+            return null;
         }
-        LinkedList<Node> level = new LinkedList<>();
-        level.add(root);
-        connectNextLevel(level);
+        if (root.left != null) {
+            root.left.next = root.right;
+            if (root.next != null) {
+                root.right.next = root.next.left;
+            }
+            connect(root.left);
+            connect(root.right);
+        }
         return root;
-    }
-
-    private void connectNextLevel(LinkedList<Node> level) {
-        LinkedList<Node> nextLevel = new LinkedList<>();
-        Node pre = null;
-        for (Node node : level) {
-            if (pre == null) {
-                pre = node;
-            } else {
-                pre.next = node;
-                pre = node;
-            }
-            if (pre.left != null) {
-                nextLevel.add(pre.left);
-            }
-            if (pre.right != null) {
-                nextLevel.add(pre.right);
-            }
-        }
-        if (nextLevel.size() > 0) {
-            connectNextLevel(nextLevel);
-        }
     }
 
     @Test
     public void test() {
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
+        Node root = Node.build(1, 2, 3, 4, 5, 6, 7);
         Node connect = connect(root);
         System.out.println(connect);
     }
