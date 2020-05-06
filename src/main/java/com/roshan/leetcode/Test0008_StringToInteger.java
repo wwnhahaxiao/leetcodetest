@@ -32,35 +32,41 @@ package com.roshan.leetcode;
 //        Thefore INT_MIN (−231) is returned.
 public class Test0008_StringToInteger {
     private static int mySolution(String str) {
-        str = str.trim();
-        int sign = 1, index = 0, res = 0;
-        if (str.charAt(0) == '-') {
+        if (str == null || str.isEmpty()) {
+            return 0;
+        }
+        int index = 0, sign = 1, result = 0;
+        while (index < str.length() && str.charAt(index) == ' ') {
+            index++;
+        }
+        if (index < str.length() && str.charAt(index) == '+') {
+            sign = 1;
+            index++;
+        } else if (index < str.length() && str.charAt(index) == '-') {
             sign = -1;
             index++;
         }
+
         while (index < str.length()) {
-            if (Character.isDigit(str.charAt(index))) {
-                int n = str.charAt(index) - '0';
-                /*
-                校验加正数是否超出int范围
-                xxx <= Integer.MAX_VALUE
-                --> xx <= (Integer.MAX_VALUE-x) / 10
-                --> if (xx > (Integer.MAX_VALUE-x) / 10) 超出范围
-                (sign > 0 ? 0 : 1) 兼容判断负数 负数绝对值范围比正数大1
-                 */
-                if (res > (Integer.MAX_VALUE - n) / 10) {
-                    return sign > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-                }
-                res = res * 10 + n;
-                index++;
-            } else {
+            char c = str.charAt(index);
+            if (!Character.isDigit(c)) {
                 break;
             }
+            if (sign > 0 && (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && Character.getNumericValue(c) > 7))) {
+                return Integer.MAX_VALUE;
+            } else if (sign < 0 && (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && Character.getNumericValue(c) > 8))) {
+                return Integer.MIN_VALUE;
+            }
+            result = result * 10 + Character.getNumericValue(c);
+            index++;
         }
-        return res * sign;
+        return result * sign;
     }
 
     public static void main(String[] args) {
+        System.out.println(mySolution("2147483646"));
+        System.out.println(mySolution(""));
+        System.out.println(mySolution(" "));
         System.out.println(mySolution("42"));
         System.out.println(mySolution("   -42"));
         System.out.println(mySolution("4193 with words"));
