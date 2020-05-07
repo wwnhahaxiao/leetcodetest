@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class T0115_DistinctSubsequences {
+public class Test0115_DistinctSubsequences {
     private int numDistinct(String s, String t) {
         int[][] dp = new int[t.length() + 1][s.length() + 1];
         Arrays.fill(dp[0], 1);
