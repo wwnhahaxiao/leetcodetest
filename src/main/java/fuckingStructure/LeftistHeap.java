@@ -1,7 +1,11 @@
 package fuckingStructure;
 
+import java.util.LinkedList;
+
 public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
+
     private Node<AnyType> root;
+
     public LeftistHeap() {
         root = null;
     }
@@ -54,6 +58,10 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
             npl = 0;
         }
 
+        @Override
+        public String toString() {
+            return element.toString();
+        }
     }
 
     private Node<AnyType> merge(Node<AnyType> h1, Node<AnyType> h2) {
@@ -85,5 +93,27 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
 
     private void swapChildren(Node<AnyType> t) {
 
+    }
+
+    public void build(AnyType rootValue, AnyType... values) {
+        LinkedList<Node<AnyType>> list = new LinkedList<>();
+        this.root = new Node<>(rootValue);
+        list.add(root);
+        for (AnyType value : values) {
+            Node<AnyType> node = list.remove();
+            if (node.left == null) {
+                node.left = new Node<>(value);
+                list.addFirst(node);
+                list.add(node.left);
+            } else {
+                node.right = new Node<>(value);
+                list.add(node.right);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(root);
     }
 }
