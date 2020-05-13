@@ -19,7 +19,7 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     public void insert(AnyType x) {
-
+        root = merge(new Node<>(x), root);
     }
 
     public AnyType findMin() {
@@ -30,7 +30,12 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     public AnyType deleteMin() {
-        return null;
+        if (isEmpty()) {
+            throw new UnderflowException();
+        }
+        AnyType minItem = root.element;
+        root = merge(root.left, root.right);
+        return minItem;
     }
 
     public boolean isEmpty() {
@@ -92,28 +97,33 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     private void swapChildren(Node<AnyType> t) {
-
+        Node<AnyType> tmp = t.left;
+        t.left = t.right;
+        t.right = tmp;
     }
 
-    public void build(AnyType rootValue, AnyType... values) {
-        LinkedList<Node<AnyType>> list = new LinkedList<>();
-        this.root = new Node<>(rootValue);
-        list.add(root);
-        for (AnyType value : values) {
-            Node<AnyType> node = list.remove();
-            if (node.left == null) {
-                node.left = new Node<>(value);
-                list.addFirst(node);
-                list.add(node.left);
-            } else {
-                node.right = new Node<>(value);
-                list.add(node.right);
-            }
-        }
-    }
+    public static void main(String[] args) {
+        Node<Integer> left = new Node<>(3);
+        left.left = new Node<>(10);
+        left.left.left = new Node<>(21);
+        left.left.right = new Node<>(14);
+        left.left.right.left = new Node<>(23);
+        left.right = new Node<>(8);
+        left.right.left = new Node<>(17);
+        left.right.left.left = new Node<>(26);
+        LeftistHeap<Integer> leftHeap = new LeftistHeap<>();
+        leftHeap.root = left;
 
-    @Override
-    public String toString() {
-        return String.valueOf(root);
+        Node<Integer> right = new Node<>(6);
+        right.left = new Node<>(12);
+        right.left.left = new Node<>(18);
+        right.left.right = new Node<>(24);
+        right.left.right.left = new Node<>(33);
+        right.right = new Node<>(7);
+        right.right.left = new Node<>(37);
+        right.right.right = new Node<>(18);
+        LeftistHeap<Integer> rightHeap = new LeftistHeap<>();
+        rightHeap.root = right;
+        leftHeap.merge(rightHeap);
     }
 }
