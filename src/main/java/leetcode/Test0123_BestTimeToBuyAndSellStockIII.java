@@ -31,7 +31,7 @@ public class Test0123_BestTimeToBuyAndSellStockIII {
     /**
      * 一次遍历,时间O(n),空间O(1)
      */
-    public int maxProfit(int[] prices) {
+    private int maxProfit(int[] prices) {
         int firstBuy = Integer.MIN_VALUE, firstSold = 0, secondBuy = Integer.MIN_VALUE, secondSold = 0;
         for (int price : prices) {
             firstBuy = Math.max(-price, firstBuy);
@@ -112,7 +112,7 @@ public class Test0123_BestTimeToBuyAndSellStockIII {
     /**
      * 股票类问题模板
      */
-    public int maxProfitTemplate(int[] prices) {
+    private int maxProfitTemplate(int[] prices) {
         if (prices == null || prices.length == 0) {
             return 0;
         }

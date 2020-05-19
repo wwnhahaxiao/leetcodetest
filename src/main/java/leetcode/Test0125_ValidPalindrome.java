@@ -15,7 +15,7 @@ import java.util.Optional;
 //        Input: "race a car"
 //        Output: false
 public class Test0125_ValidPalindrome {
-    public boolean isPalindrome(String s) {
+    private boolean isPalindrome(String s) {
         int left = 0, right = s.length() - 1;
         s = s.toLowerCase();
         while (left < right) {
