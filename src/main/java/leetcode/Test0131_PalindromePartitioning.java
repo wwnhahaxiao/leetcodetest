@@ -16,14 +16,12 @@ import java.util.List;
 //        ["a","a","b"]
 //        ]
 public class Test0131_PalindromePartitioning {
-    private char[] arr;
     private String s;
     private List<List<String>> result;
 
     private List<List<String>> partition(String s) {
         this.s = s;
         this.result = new ArrayList<>();
-        arr = s.toCharArray();
         backtrack(new LinkedList<>(), 0);
         return result;
     }
@@ -34,7 +32,7 @@ public class Test0131_PalindromePartitioning {
             return;
         }
         int right = start;
-        while (right < arr.length) {
+        while (right < s.length()) {
             if (isPalindrome(start, right++)) {
                 palindromes.add(s.substring(start, right));
                 backtrack(palindromes, right);
@@ -45,7 +43,7 @@ public class Test0131_PalindromePartitioning {
 
     private boolean isPalindrome(int left, int right) {
         while (left < right) {
-            if (arr[left++] != arr[right--]) {
+            if (s.charAt(left++) != s.charAt(right--)) {
                 return false;
             }
         }
@@ -54,7 +52,7 @@ public class Test0131_PalindromePartitioning {
 
     @Test
     public void test() {
-        List<List<String>> partition = partition("");
+        List<List<String>> partition = partition("aab");
         System.out.println(partition);
     }
 }
