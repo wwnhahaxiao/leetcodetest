@@ -19,6 +19,14 @@ import java.util.Arrays;
 //        Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
 //        The third child gets 1 candy because it satisfies the above two conditions.
 public class Test0135_Candy {
+    public int candy2(int[] ratings) {
+        for (int i = 1; i < ratings.length; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+
+            }
+        }
+        return 0;
+    }
     public int candy(int[] ratings) {
         int[] result = new int[ratings.length];
         Arrays.fill(result, 1);
@@ -29,7 +37,7 @@ public class Test0135_Candy {
         }
         for (int i = ratings.length - 2; i >= 0; i--) {
             if (ratings[i] > ratings[i + 1]) {
-                result[i] = result[i + 1] + 1;
+                result[i] = Math.max(result[i + 1] + 1, result[i]);
             }
         }
         return Arrays.stream(result).sum();
