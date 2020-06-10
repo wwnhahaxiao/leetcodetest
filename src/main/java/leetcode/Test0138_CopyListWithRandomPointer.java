@@ -56,7 +56,6 @@ public class Test0138_CopyListWithRandomPointer {
 
     @Test
     public void test() {
-        //[[7,null],[13,0],[11,4],[10,2],[1,0]]
         Node n0 = new Node(7);
         Node n1 = new Node(13);
         Node n2 = new Node(11);
@@ -89,13 +88,6 @@ public class Test0138_CopyListWithRandomPointer {
         @Override
         public String toString() {
             return String.valueOf(val);
-//            StringBuilder sb = new StringBuilder();
-//            Node temp = this;
-//            while (temp != null) {
-//                sb.append("(" + temp.val + "," + (temp.random == null ? "null" : String.valueOf(temp.random.val)) + ")-->");
-//                temp = temp.next;
-//            }
-//            return sb.toString();
         }
     }
 }
