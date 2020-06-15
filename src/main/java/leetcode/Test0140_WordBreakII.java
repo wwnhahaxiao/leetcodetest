@@ -35,37 +35,49 @@ import java.util.*;
 //        Output:
 //        []
 public class Test0140_WordBreakII {
+
     private String s;
     private Set<String> dict;
-    private Map<String, List<String>> memory;
-    private List<String> result;
+    private Map<Integer, List<String>> memory;
 
     private List<String> wordBreak(String s, List<String> wordDict) {
         this.s = s;
         this.dict = new HashSet<>(wordDict);
         this.memory = new HashMap<>();
-        this.result = new ArrayList<>();
-        backtrack(0, new ArrayList<>());
-        return result;
+        return backtrack(0, new ArrayList<>());
     }
 
-    private void backtrack(int start, List<String> words) {
+    private List<String> backtrack(int start, List<String> words) {
         if (start == s.length()) {
-            result.add(String.join(" ", words));
-            return;
+            return Collections.singletonList("");
         }
+        if (memory.containsKey(start)) {
+            return memory.get(start);
+        }
+        List<String> temp = new ArrayList<>();
         for (int i = 1; start + i <= s.length(); i++) {
             String word = s.substring(start, start + i);
             if (dict.contains(word)) {
                 words.add(word);
-                backtrack(start + i, words);
+                List<String> posts = backtrack(start + i, words);
+                for (String post : posts) {
+                    if (post.equals("")) {
+                        temp.add(word);
+                    } else {
+                        temp.add(word + " " + post);
+                    }
+                }
                 words.remove(words.size() - 1);
             }
         }
+        memory.put(start, temp);
+        return temp;
     }
 
     @Test
     public void test() {
+//        String s = "aaaaaaa";
+//        List<String> dict = Arrays.asList("aaaa","aa","a");
         String s = "catsanddog";
         List<String> dict = Arrays.asList("cat","cats","and","sand","dog");
 //        String s = "leetcode";
