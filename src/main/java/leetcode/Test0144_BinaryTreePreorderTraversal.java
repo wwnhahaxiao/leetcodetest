@@ -1,6 +1,7 @@
 package leetcode;
 
 import leetcode.baseStructure.TreeNode;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +39,12 @@ public class Test0144_BinaryTreePreorderTraversal {
             }
         }
         return result;
+    }
+
+    @Test
+    public void test() {
+        TreeNode root = TreeNode.build(1, 2, 3, 4, 5, 6, 7);
+        List<Integer> list = preorderTraversal(root);
+        System.out.println(list);
     }
 }
