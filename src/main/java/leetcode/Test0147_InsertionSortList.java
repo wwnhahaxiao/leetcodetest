@@ -25,42 +25,15 @@ public class Test0147_InsertionSortList {
         ListNode curr = head.next;
         while (curr != null) {
             ListNode next = curr.next;
-
             if (curr.val < pre.val) {
                 pre.next = null;
                 curr.next = null;
                 correct(dummy, curr);
-            }
-            pre = curr;
-            curr = next;
-        }
-    }
-    public ListNode insertionSortList2(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode dummy = new ListNode(0);
-        ListNode pre = head;
-        ListNode cur = head.next;
-        dummy.next = head;
-        while (cur != null) {
-            if (pre.val <= cur.val) {// 本来就有序
-                pre = cur;
-                cur = cur.next;
+                pre.next = next;
             } else {
-                ListNode p = dummy;
-                // 找到一个位置使得p < cur < p.next
-                while (p.next != cur && p.next.val < cur.val) {
-                    p = p.next;
-                }
-                // 将cur插入到p和p.next之间
-                // 因为cur被插到前面，pre的指针需要跳过cur
-                pre.next = cur.next;
-                cur.next = p.next;
-                p.next = cur;
-                // 完成插入后，cur回到pre后面
-                cur = pre.next;
+                pre = curr;
             }
+            curr = next;
         }
         return dummy.next;
     }
@@ -92,8 +65,9 @@ public class Test0147_InsertionSortList {
 
     @Test
     public void test() {
-        ListNode head = ListNode.build(4,2,1,3);
-        ListNode listNode = insertionSortList(head);
+//        ListNode head = ListNode.build(4,2,1,3);
+        ListNode head = ListNode.build(3, 2, 4);
+        ListNode listNode = insertionSortList1(head);
         System.out.println(listNode);
     }
 }
