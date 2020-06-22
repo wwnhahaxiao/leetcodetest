@@ -1,7 +1,5 @@
 package leetcode;
 
-import java.util.Stack;
-
 public class Test0150_EvaluateReversePolishNotation {
 //    Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 //    Valid operators are +, -, *, /. Each operand may be an integer or another expression.
@@ -28,22 +26,27 @@ public class Test0150_EvaluateReversePolishNotation {
 //            = 17 + 5
 //            = 22
     private static int evalRPN(String[] tokens) {
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < tokens.length; i++) {
-            if (tokens[i].equals("+")) {
-                stack.push(stack.pop() + stack.pop());
-            } else if (tokens[i].equals("-")) {
-                stack.push(-stack.pop() + stack.pop());
-            } else if (tokens[i].equals("*")) {
-                stack.push(stack.pop() * stack.pop());
-            } else if (tokens[i].equals("/")) {
-                int divisor = stack.pop();
-                stack.push(stack.pop() / divisor);
-            } else {
-                stack.push(Integer.valueOf(tokens[i]));
+        int[] nums = new int[tokens.length / 2 + 1];
+        int index = 0;
+        for (String str : tokens) {
+            switch (str) {
+                case  "+":
+                    nums[index - 2] += nums[--index];
+                    break;
+                case "-":
+                    nums[index - 2] -= nums[--index];
+                    break;
+                case "*":
+                    nums[index - 2] *= nums[--index];
+                    break;
+                case "/":
+                    nums[index - 2] /= nums[--index];
+                    break;
+                default:
+                    nums[index++] = Integer.parseInt(str);
             }
         }
-        return stack.pop();
+        return nums[0];
     }
 
     public static void main(String[] args) {
