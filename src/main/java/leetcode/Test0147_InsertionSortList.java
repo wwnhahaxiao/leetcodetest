@@ -17,7 +17,7 @@ import org.junit.Test;
 //        Input: -1->5->3->4->0
 //        Output: -1->0->3->4->5
 public class Test0147_InsertionSortList {
-    public ListNode insertionSortList1(ListNode head) {
+    private ListNode insertionSortList1(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode dummy = new ListNode(Integer.MIN_VALUE);
         dummy.next = head;
@@ -36,17 +36,6 @@ public class Test0147_InsertionSortList {
             curr = next;
         }
         return dummy.next;
-    }
-
-    private ListNode insertionSortList(ListNode head) {
-        ListNode correct = new ListNode(Integer.MIN_VALUE);
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = null;
-            correct(correct, head);
-            head = next;
-        }
-        return correct.next;
     }
 
     private void correct(ListNode head, ListNode node) {
