@@ -1,6 +1,7 @@
 package leetcode;
 
-public class Test0150_EvaluateReversePolishNotation {
+import org.junit.Test;
+
 //    Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 //    Valid operators are +, -, *, /. Each operand may be an integer or another expression.
 //    Note:
@@ -25,7 +26,8 @@ public class Test0150_EvaluateReversePolishNotation {
 //            = (0 + 17) + 5
 //            = 17 + 5
 //            = 22
-    private static int evalRPN(String[] tokens) {
+public class Test0150_EvaluateReversePolishNotation {
+    private int evalRPN(String[] tokens) {
         int[] nums = new int[tokens.length / 2 + 1];
         int index = 0;
         for (String str : tokens) {
@@ -49,7 +51,8 @@ public class Test0150_EvaluateReversePolishNotation {
         return nums[0];
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         int a = evalRPN(new String[]{"2", "1", "+", "3", "*"});
         int b = evalRPN(new String[]{"4", "13", "5", "/", "+"});
         int c = evalRPN(new String[]{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"});

@@ -1,5 +1,7 @@
 package leetcode;
 
+import javafx.util.Pair;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +40,9 @@ public class Test0149_MaxPointsOnALine {
             for (int j = i + 1; j < points.length; j++) {
                 int[] a = points[i];
                 int[] b = points[j];
-                String slope = getSlope(a, b);
+                //获取两点的斜率slope
+                double slope = getSlope(a, b);
+                //获取和x轴的交点的x坐标intersection
                 String intersection = getIntersection(a, slope);
                 String key = slope + "-" + intersection;
                 Integer pointNum = lineMap.getOrDefault(key, 1);
@@ -49,11 +53,16 @@ public class Test0149_MaxPointsOnALine {
         return max;
     }
 
-    private String getSlope(int[] a, int[] b) {
-        return "";
+    private double getSlope(int[] a, int[] b) {
+        if (a[0] > b[0]) {
+            return getSlope(b, a);
+        }
+        int x = b[0] - a[0];
+        int y = b[1] - a[1];
+        return (double) y / x;
     }
 
-    private String getIntersection(int[] a, String slope) {
+    private String getIntersection(int[] a, double slope) {
         return "";
     }
 }
