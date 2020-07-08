@@ -1,40 +1,15 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Test {
+    private int state;
     public static void main(String[] args) {
-        int[][] matrix = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
-        List<Integer> integers = mySolution(matrix);
-        System.out.println(integers);
-    }
-    private static List<Integer> mySolution(int[][] matrix) {
-        List<Integer> result = new ArrayList<>();
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return result;
-        }
-        int down = 0, up = matrix.length - 1;
-        int left = 0, right = matrix[0].length - 1;
-        while (left <= right && down <= up) {
-            for (int i = left; i <= right; i++) {
-                result.add(matrix[down][i]);
-            }
-            down++;
-            for (int i = down; i <= up; i++) {
-                result.add(matrix[i][right]);
-            }
-            right--;
-            for (int i = right; i >= left && down <= up; i--) {
-                result.add(matrix[up][i]);
-            }
-            up--;
-            for (int i = up; i >= down && left <= right; i--) {
-                result.add(matrix[i][left]);
-            }
-            left++;
-        }
-        return result;
+        Test test = new Test();
+        System.out.println(test.state);
+        ReentrantLock lock = new ReentrantLock(true);
+        lock.lock();
+        lock.unlock();
     }
     /*
     for 选择 in 选择列表:
