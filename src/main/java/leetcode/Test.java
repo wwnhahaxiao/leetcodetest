@@ -1,16 +1,7 @@
 package leetcode;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Test {
-    private int state;
-    public static void main(String[] args) {
-        Test test = new Test();
-        System.out.println(test.state);
-        ReentrantLock lock = new ReentrantLock(true);
-        lock.lock();
-        lock.unlock();
-    }
+
     /*
     for 选择 in 选择列表:
         # 做选择
