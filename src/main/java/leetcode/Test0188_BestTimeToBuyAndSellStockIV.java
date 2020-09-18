@@ -21,7 +21,6 @@ import java.util.Map;
 //        Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4.
 //                     Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
 public class Test0188_BestTimeToBuyAndSellStockIV {
-
     private int maxProfit(int k, int[] prices) {
         if (k == 0 || prices.length == 0) return 0;
         //当k过大时转化为无限次交易
