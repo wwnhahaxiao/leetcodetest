@@ -24,7 +24,7 @@ import java.util.Map;
 //        The input must be a binary string of length = 32
 public class Test0190_ReverseBits {
     // you need treat n as an unsigned value
-    public int reverseBits(int n) {
+    private int reverseBits(int n) {
         //将数字分为两半 颠倒左右16位
         n = (n >>> 16) | (n << 16);
         //将两半的数字再分为两份 并颠倒
