@@ -1,7 +1,7 @@
 package leetcode;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
 
@@ -16,22 +16,38 @@ public class Test {
         将该选择再加入选择列表
      */
 
+    public enum MyEnum {
+        aa("a", (byte) 0),
+        bb("b", (byte) 1),
+        cc("c", (byte) 2);
+
+        private final String name;
+        private final Byte index;
+
+        MyEnum(String name, Byte index) {
+            this.name = name;
+            this.index = index;
+        }
+
+        public Byte getIndex() {
+            return index;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "{'name':'" + name + "', 'index':'" + index +"'}";
+        }
+    }
+
     public static void main(String[] args) {
-        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
-        list.add("a");
-        ReentrantLock lock = new ReentrantLock();
-        Thread a = new Thread(() -> {
-            lock.lock();
-        });
-        Thread b = new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            lock.lock();
-        });
-        a.start();
-        b.start();
+        List<MyEnum> list = new ArrayList<>();
+        list.add(MyEnum.aa);
+        list.add(MyEnum.bb);
+        list.add(MyEnum.cc);
+        System.out.println(list.toString());
     }
 }
