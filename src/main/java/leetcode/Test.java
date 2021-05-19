@@ -43,11 +43,13 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) {
-        List<MyEnum> list = new ArrayList<>();
-        list.add(MyEnum.aa);
-        list.add(MyEnum.bb);
-        list.add(MyEnum.cc);
-        System.out.println(list.toString());
+    @org.junit.Test
+    public void test() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (j == 1) break;
+            }
+        }
     }
+
 }
