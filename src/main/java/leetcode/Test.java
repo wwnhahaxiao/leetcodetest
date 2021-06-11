@@ -1,7 +1,7 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 public class Test {
 
@@ -16,40 +16,11 @@ public class Test {
         将该选择再加入选择列表
      */
 
-    public enum MyEnum {
-        aa("a", (byte) 0),
-        bb("b", (byte) 1),
-        cc("c", (byte) 2);
-
-        private final String name;
-        private final Byte index;
-
-        MyEnum(String name, Byte index) {
-            this.name = name;
-            this.index = index;
-        }
-
-        public Byte getIndex() {
-            return index;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public String toString() {
-            return "{'name':'" + name + "', 'index':'" + index +"'}";
-        }
-    }
-
     @org.junit.Test
     public void test() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (j == 1) break;
-            }
-        }
+        Map<String, String> map = new HashMap<>();
+        map.put("aa", "1");
+        map.put("bB", "1");
     }
 
 }
